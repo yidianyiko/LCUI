@@ -4,7 +4,12 @@ add_rules("mode.debug", "mode.release", "c++.openmp")
 add_includedirs("include")
 add_defines("LCUI_EXPORTS")
 includes("lib/**/xmake.lua")
+includes("test/xmake.lua")
 set_warnings("all")
+
+if is_plat("windows") then
+    add_defines("_CRT_SECURE_NO_WARNINGS")
+end
 
 target("LCUI")
     set_kind("shared")
