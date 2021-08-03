@@ -4,7 +4,6 @@ add_rules("mode.debug", "mode.release", "c++.openmp")
 add_includedirs("include")
 add_defines("LCUI_EXPORTS", "UNICODE")
 includes("lib/**/xmake.lua")
-includes("test/xmake.lua")
 set_warnings("all")
 
 if is_plat("windows") then
