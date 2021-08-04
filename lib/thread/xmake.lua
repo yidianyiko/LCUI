@@ -3,7 +3,7 @@ target("lcui-thread")
     if is_plat("windows") then
         add_files("src/windows/*.c")
     else
-        add_files("src/linux/*.c")
+        add_files("src/pthread/*.c")
         add_syslinks("pthread", "dl")
     end
     add_deps("lcui-util")
