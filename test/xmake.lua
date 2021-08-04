@@ -6,6 +6,23 @@ add_packages("lcui")
 add_includedirs("lib/test/include/")
 
 target("run_tests")
+    set_kind("binary")
+    if is_plat("linux") and is_mode("coverage") then
+        add_cflags("-ftest-coverage", "-fprofile-arcs", {force = true})
+        add_links("gcov")
+        on_run(function (target)
+            import("core.base.option")
+            local argv = {}
+            local options = {{nil, "memcheck",  "k",  nil, "enable memory check."}}
+            local args = option.raw_parse(option.get("arguments") or {}, options)
+            if args.memcheck then
+                table.insert(argv, "--leak-check=full")
+                table.insert(argv, "--error-exitcode=42")
+            end
+            table.insert(argv, target:targetfile())
+            os.execv("valgrind", argv)
+        end)
+    end
     add_files("run_tests.c", "cases/*.c")
     add_deps("test")
 

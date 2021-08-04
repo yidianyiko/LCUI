@@ -1,8 +1,8 @@
 set_project("lcui")
 set_version("2.2.1")
-add_rules("mode.debug", "mode.release", "c++.openmp")
+add_rules("mode.debug", "mode.release", "c++.openmp", "mode.coverage")
 add_includedirs("include")
-add_defines("LCUI_EXPORTS", "UNICODE")
+add_defines("LCUI_EXPORTS", "_UNICODE")
 includes("lib/**/xmake.lua")
 set_warnings("all")
 
