@@ -16,7 +16,8 @@ jobs:
 
       - name: Build
         run: |
-          xmake config -m coverage
+          xmake config -m coverage -y
+          xmake config -v
           xmake -v
 
       - name: Run tests
