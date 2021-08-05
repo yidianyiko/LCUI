@@ -50,30 +50,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - name: Cache windows build tools
-        uses: actions/cache@v2
-        with:
-          path: ~/.windows-build-tools
-          key: ${{ matrix.os }}
-
-      - name: "Setup windows-build-tools"
-        run: npm install --global --production windows-build-tools --vs2015
-
-      - name: "Setup msbuild"
-        uses: microsoft/setup-msbuild@v1.0.2
-
+      - uses: xmake-io/github-action-setup-xmake@v1
       - name: "Build"
         run: xmake -v
 
       - name: "Run tests"
         continue-on-error: true
         run: xmake run run_tests
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@master
-        with:
-          name: build-windows
-          path: .\lcpkg\dist\*.zip
 
   release:
     if: startsWith(github.ref, 'refs/tags/v')
