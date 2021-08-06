@@ -16,7 +16,7 @@ jobs:
 
       - name: Build
         run: |
-          xmake config -m coverage -y
+          xmake config --mode=coverage --toolchain=clang -y
           xmake config -v
           xmake -v
 
