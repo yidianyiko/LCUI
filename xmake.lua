@@ -43,6 +43,7 @@ target("lcui")
 
 target("run-tests")
     set_kind("binary")
+    set_rundir("$(projectdir)/test")
     set_default(false)
     if is_plat("linux") and is_mode("coverage") then
         add_cflags("-ftest-coverage", "-fprofile-arcs", {force = true})
