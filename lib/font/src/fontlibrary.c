@@ -848,7 +848,7 @@ static void LCUIFont_InitEngine(void)
 	fontlib.incore_font = LCUIFont_GetById(fid);
 	fontlib.default_font = fontlib.incore_font;
 	/* 然后看情况启用其它字体引擎 */
-#ifdef LCUI_FONT_ENGINE_FREETYPE
+#ifdef USE_FREETYPE
 	if (LCUIFont_InitFreeType(&fontlib.engines[1]) == 0) {
 		fontlib.engine = &fontlib.engines[1];
 	}
@@ -880,7 +880,7 @@ static void LCUIFont_FreeBase(void)
 static void LCUIFont_FreeEngine(void)
 {
 	LCUIFont_ExitInCoreFont();
-#ifdef LCUI_FONT_ENGINE_FREETYPE
+#ifdef USE_FREETYPE
 	LCUIFont_ExitFreeType();
 #endif
 }

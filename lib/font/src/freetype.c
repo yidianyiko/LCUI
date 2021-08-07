@@ -30,7 +30,7 @@
 
 #include "config.h"
 #include <LCUI_Build.h>
-#ifdef LCUI_FONT_ENGINE_FREETYPE
+#ifdef USE_FREETYPE
 #include <LCUI/types.h>
 #include <LCUI/util/linkedlist.h>
 #include <LCUI/font.h>

@@ -12,7 +12,7 @@ else
     add_cxflags("-fPIC")
     if is_mode("coverage") then
         add_cflags("-ftest-coverage", "-fprofile-arcs", {force = true})
-        add_links("gcov")
+        add_syslinks("gcov")
     end
 end
 

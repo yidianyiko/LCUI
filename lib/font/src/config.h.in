@@ -1,1 +1,2 @@
 ${define USE_FREETYPE}
+${define USE_FONTCONFIG}
