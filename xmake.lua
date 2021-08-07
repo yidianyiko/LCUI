@@ -60,7 +60,8 @@ target("run-tests")
                 table.insert(argv, "--leak-check=full")
                 table.insert(argv, "--error-exitcode=42")
             end
-            table.insert(argv, target:targetfile())
+            table.insert(argv, val("projectdir").."/"..target:targetfile())
+            os.cd("$(projectdir)/test")
             os.execv("valgrind", argv)
         end)
     end
