@@ -10,6 +10,10 @@ if is_plat("windows") then
     add_defines("_CRT_SECURE_NO_WARNINGS")
 else
     add_cxflags("-fPIC")
+    if is_mode("coverage") then
+        add_cflags("-ftest-coverage", "-fprofile-arcs", {force = true})
+        add_links("gcov")
+    end
 end
 
 if is_mode("release") then
@@ -46,8 +50,6 @@ target("run-tests")
     set_rundir("$(projectdir)/test")
     set_default(false)
     if is_plat("linux") and is_mode("coverage") then
-        add_cflags("-ftest-coverage", "-fprofile-arcs", {force = true})
-        add_links("gcov")
         on_run(function (target)
             import("core.base.option")
             local argv = {}
